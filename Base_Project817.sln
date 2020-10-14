@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base_Project817.Api + Angular", "Base_Project817.Api + Angular\Base_Project817.Api + Angular.csproj", "{7BAE53FE-1C03-4A38-BE11-BF90F15E65B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Base_Project817.Api + Angular", "Base_Project817.Api + Angular\Base_Project817.Api + Angular.csproj", "{7BAE53FE-1C03-4A38-BE11-BF90F15E65B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base_Project817.DataAccess", "Base_Project817.DataAccess\Base_Project817.DataAccess.csproj", "{0EC46B9A-9856-4E67-8382-4A8C767BC49D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Base_Project817.DataAccess", "Base_Project817.DataAccess\Base_Project817.DataAccess.csproj", "{0EC46B9A-9856-4E67-8382-4A8C767BC49D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base_Project817.Domain", "Base_Project817.Domain\Base_Project817.Domain.csproj", "{15BFFE42-B7E2-45A1-AA3D-EDCC19F01C88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0EC46B9A-9856-4E67-8382-4A8C767BC49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EC46B9A-9856-4E67-8382-4A8C767BC49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EC46B9A-9856-4E67-8382-4A8C767BC49D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15BFFE42-B7E2-45A1-AA3D-EDCC19F01C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15BFFE42-B7E2-45A1-AA3D-EDCC19F01C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15BFFE42-B7E2-45A1-AA3D-EDCC19F01C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15BFFE42-B7E2-45A1-AA3D-EDCC19F01C88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
