@@ -106,9 +106,58 @@ namespace Base_Project817.Api___Angular.Controllers
 
         }
         
+        //localhost:12312/api/Account/login
+        [HttpPost("login")]
+        public async Task<ResultDTO> Login([FromBody]UserLoginDTO model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return new ResultErrorDTO
+                    {
+                        Message ="ERROR",
+                        Status = 401,
+                        Errors = CustomValidator.getErrorsByModel(ModelState)
+                    };
+                }
+
+                var result = _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false).Result;
+
+                if(!result.Succeeded)
+                {
+                    return new ResultErrorDTO
+                    {
+                        Status = 403,
+                        Message = "ERROR",
+                        Errors = new List<string> { "Incorrect email or password" }
+                    };
+                } else
+                {
+                    var user =  await _userManager.FindByEmailAsync(model.Email);
+                    await _signInManager.SignInAsync(user, false);
+
+                    return new ResultLoginDTO
+                    {
+                        Status = 200,
+                        Message = "OK",
+                        Token = _jwtTokenService.CreateToken(user)
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                return new ResultErrorDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = new List<string> { e.Message }
+                };
+            }
 
 
 
+        }
 
     }
 }

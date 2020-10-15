@@ -7,22 +7,46 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AdminAreaComponent } from './Admin-area/Admin-area.component';
+import { ClientAreaComponent } from './Client-area/Client-area.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
+
+const conf: NotifierOptions = {
+  position: {
+    horizontal: {
+      position: 'right'
+    },
+    vertical: {
+      position: 'top'
+    }
+  }
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
+    SignInComponent,
+    SignUpComponent,
+    AdminAreaComponent,
+    ClientAreaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    NotifierModule.withConfig(conf),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' }
-    ])
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [NgxSpinnerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
