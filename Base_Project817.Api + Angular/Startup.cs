@@ -1,3 +1,4 @@
+using Base_Project817.Api___Angular.Helper;
 using Base_Project817.DataAccess;
 using Base_Project817.DataAccess.Entity;
 using Base_Project817.Domain.Implentations;
@@ -12,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 
 namespace Base_Project817.Api___Angular
 {
@@ -49,6 +53,9 @@ namespace Base_Project817.Api___Angular
 
             services.AddTransient<IJWTTokenService, JWTTokenService>();
 
+            var jwtTokenSecretKey = Configuration.GetValue<string>("SecretPhrase");
+            var signInKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtTokenSecretKey));
+
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -60,7 +67,7 @@ namespace Base_Project817.Api___Angular
                 cfg.SaveToken = true;
                 cfg.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    IssuerSigningKey = signingKey,
+                    IssuerSigningKey = signInKey,
                     ValidateAudience = false,
                     ValidateIssuer = false,
                     ValidateLifetime = true,
@@ -101,6 +108,9 @@ namespace Base_Project817.Api___Angular
                 app.UseSpaStaticFiles();
             }
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -122,6 +132,11 @@ namespace Base_Project817.Api___Angular
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+
+
+
+            //SeederDatabase.SeedData(app.ApplicationServices, env, Configuration);
         }
     }
 }
