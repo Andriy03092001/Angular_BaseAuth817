@@ -20,15 +20,6 @@ export class SignUpComponent implements OnInit {
 
   register() {
 
-    this.notifier.notify('error', "Server error");//red
-    this.notifier.notify('success', "You registered");//green
-
-
-    // this.spinner.show();
-
-    // setTimeout(() => {
-    //   this.spinner.hide();
-    // }, 4000);
   }
 
   ngOnInit() {
