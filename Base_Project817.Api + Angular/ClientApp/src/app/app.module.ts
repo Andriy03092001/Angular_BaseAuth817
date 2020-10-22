@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { TokenInterceptor } from './interceptor';
 
 const conf: NotifierOptions = {
   position: {
@@ -46,7 +47,11 @@ const conf: NotifierOptions = {
     BrowserAnimationsModule,
     NgxSpinnerModule
   ],
-  providers: [NgxSpinnerService],
+  providers: [
+    NgxSpinnerService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
